@@ -1,0 +1,76 @@
+/* Design tokens. Every color, size and rule in the app comes from here. See plan, Design direction. */
+:root {
+  --paper: #f5f6f2;
+  --surface: #ffffff;
+  --ink: #17201b;
+  --ink-muted: #56605a;
+  --rule: #17201b;
+  --protein: #2f4bd3;
+  --carbs: #d9a21b;
+  --fat: #7a8b2e;
+  --over: #c8372d;
+
+  --font: 'Archivo', system-ui, -apple-system, sans-serif;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: 2.5rem;
+
+  --gutter: 16px;
+  --rule-thick: 6px;
+  --rule-thin: 1px;
+  --touch: 44px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161c19;
+    --surface: #1e2622;
+    --ink: #eef0ea;
+    --ink-muted: #a3aca6;
+    --rule: #eef0ea;
+    --protein: #8ea2ff;
+    --over: #ff7a6e;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  padding: calc(env(safe-area-inset-top) + 12px) var(--gutter) calc(env(safe-area-inset-bottom) + 24px);
+}
+
+a {
+  color: var(--protein);
+}
+
+:focus-visible {
+  outline: 3px solid var(--protein);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
