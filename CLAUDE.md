@@ -16,7 +16,10 @@ pass. If a request conflicts with the rules below, say so before doing it.
 - PWA via `vite-plugin-pwa` (update prompt, offline precache)
 - Tests: Vitest + Testing Library (unit), Playwright on WebKit at iPhone 13 size (end to end)
 - Lint: oxlint. Format: Prettier.
-- Planned (Phase 1+): Dexie (IndexedDB) for storage, Zod schemas, React Router, Zustand
+- Storage: Dexie (IndexedDB), schema in `src/db/db.ts`, all access through `src/db/repo.ts`. Screens read with `useLiveQuery`.
+- Validation: Zod schemas in `src/core/schemas.ts` for foods, entries, goals and backups
+- Routing: React Router with hash URLs (works on GitHub Pages and offline)
+- No global state library yet; add Zustand only when live queries stop being enough
 
 ## Commands
 

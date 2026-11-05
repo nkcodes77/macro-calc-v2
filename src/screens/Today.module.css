@@ -1,0 +1,78 @@
+.dayNav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -16px;
+}
+
+.summary {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: var(--rule-thick) solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 6px;
+}
+
+.big {
+  font-size: var(--step-2);
+  font-weight: 800;
+  font-stretch: 80%;
+}
+
+.protein {
+  color: var(--protein);
+}
+
+.over {
+  color: var(--over);
+}
+
+.left {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 0;
+  border-top: var(--rule-thin) solid var(--rule);
+  border-bottom: var(--rule-thick) solid var(--rule);
+}
+
+.leftNum {
+  font-size: var(--step-1);
+  font-weight: 800;
+}
+
+.small {
+  font-size: var(--step--1);
+}
+
+.mealHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--rule);
+}
+
+.mealTitle {
+  flex: 1;
+  margin: 0;
+  font-size: var(--step-1);
+  font-weight: 800;
+}
+
+.ideas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  text-decoration: none;
+}

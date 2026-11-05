@@ -40,8 +40,8 @@ export default defineConfig({
     include: ['src/**/*.test.{ts,tsx}'],
     coverage: {
       provider: 'v8',
-      include: ['src/core/**'],
-      exclude: ['src/core/**/*.test.ts'],
+      include: ['src/core/**', 'src/db/**'],
+      exclude: ['src/**/*.test.ts'],
       thresholds: { lines: 90, functions: 90, branches: 90, statements: 90 },
     },
   },

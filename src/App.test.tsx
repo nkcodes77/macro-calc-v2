@@ -8,12 +8,11 @@ vi.mock('virtual:pwa-register/react', () => ({
 import App from './App'
 
 describe('App shell', () => {
-  it('renders the title and a link back to the current app', () => {
+  it('opens on Today with the main tabs and the setup card', async () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: 'Macro Calc' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'current app' })).toHaveAttribute(
-      'href',
-      'https://nkcodes77.github.io/macro-calc/',
-    )
+    expect(screen.getByRole('heading', { level: 1, name: 'Today' })).toBeInTheDocument()
+    for (const tab of ['Today', 'Ideas', 'Pantry', 'History', 'Settings'])
+      expect(screen.getByRole('link', { name: tab })).toBeInTheDocument()
+    expect(await screen.findByRole('button', { name: 'Start with the starter pantry' })).toBeInTheDocument()
   })
 })

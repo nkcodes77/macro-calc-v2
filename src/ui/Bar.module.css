@@ -1,0 +1,21 @@
+.track {
+  height: 12px;
+  border: 1.5px solid var(--ink);
+  background: var(--surface);
+}
+
+.fill {
+  height: 100%;
+}
+
+.ink {
+  background: var(--ink);
+}
+
+.protein {
+  background: var(--protein);
+}
+
+.over {
+  background: var(--over);
+}

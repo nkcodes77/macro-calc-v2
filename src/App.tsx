@@ -1,7 +1,20 @@
+import { useEffect } from 'react'
+import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router'
 import { useRegisterSW } from 'virtual:pwa-register/react'
+import { History } from './screens/History'
+import { Ideas } from './screens/Ideas'
+import { Pantry } from './screens/Pantry'
+import { Settings } from './screens/Settings'
+import { Today } from './screens/Today'
 import styles from './App.module.css'
 
-const CURRENT_APP_URL = 'https://nkcodes77.github.io/macro-calc/'
+const TABS = [
+  { to: '/', label: 'Today', end: true },
+  { to: '/ideas', label: 'Ideas', end: false },
+  { to: '/pantry', label: 'Pantry', end: false },
+  { to: '/history', label: 'History', end: false },
+  { to: '/settings', label: 'Settings', end: false },
+] as const
 
 export default function App() {
   const {
@@ -10,23 +23,47 @@ export default function App() {
   } = useRegisterSW()
 
   return (
-    <main className={styles.shell}>
-      <h1 className={styles.title}>Macro Calc</h1>
-      <p className={styles.lead}>
-        The rebuilt app is being set up. Keep logging in the <a href={CURRENT_APP_URL}>current app</a> until this one
-        can import your data.
-      </p>
-      <div className={styles.row}>
-        <span>Build</span>
-        <span className={styles.muted}>
-          {__APP_VERSION__} ({__COMMIT__})
-        </span>
-      </div>
+    <HashRouter>
       {needRefresh && (
-        <button className={styles.update} type="button" onClick={() => void updateServiceWorker(true)}>
-          Install update
-        </button>
+        <div className={styles.update} role="status">
+          <span>A new version is ready.</span>
+          <button type="button" onClick={() => void updateServiceWorker(true)}>
+            Update now
+          </button>
+        </div>
       )}
-    </main>
+      <ScrollToTop />
+      <main className={styles.main}>
+        <Routes>
+          <Route path="/" element={<Today />} />
+          <Route path="/day/:date" element={<Today />} />
+          <Route path="/ideas" element={<Ideas />} />
+          <Route path="/pantry" element={<Pantry />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<Today />} />
+        </Routes>
+      </main>
+      <nav className={styles.tabs} aria-label="Main">
+        {TABS.map((t) => (
+          <NavLink
+            key={t.to}
+            to={t.to}
+            end={t.end}
+            className={({ isActive }) => (isActive ? styles.active : styles.tab)}
+          >
+            {t.label}
+          </NavLink>
+        ))}
+      </nav>
+    </HashRouter>
   )
+}
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo?.(0, 0)
+  }, [pathname])
+  return null
 }
